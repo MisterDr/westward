@@ -2,7 +2,9 @@
  * Created by Jerome Renaux (jerome.renaux@gmail.com) on 11-06-18.
  */
 
-var StatsContainer = require('../shared/Stats.js').StatsContainer;
+// var StatsContainer = require('../shared/Stats.js').StatsContainer;
+import { StatsContainer } from '../shared/Stats.js'
+
 
 import GameServer from './GameServer'
 import Inventory from '../shared/Inventory'

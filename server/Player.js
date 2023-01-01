@@ -2,11 +2,14 @@
  * Created by Jerome on 20-09-17.
  */
 
-var PersonalUpdatePacket = require('./PersonalUpdatePacket.js').PersonalUpdatePacket;
-var Stats = require('../shared/Stats.js').Stats;
-var StatsContainer = require('../shared/Stats.js').StatsContainer;
-var Equipment = require('../shared/Equipment.js').Equipment;
-var EquipmentManager = require('../shared/Equipment.js').EquipmentManager;
+// var PersonalUpdatePacket = require('./PersonalUpdatePacket.js').PersonalUpdatePacket;
+// var Stats = require('../shared/Stats.js').Stats;
+// var StatsContainer = require('../shared/Stats.js').StatsContainer;
+// var Equipment = require('../shared/Equipment.js').Equipment;
+// var EquipmentManager = require('../shared/Equipment.js').EquipmentManager;
+import PersonalUpdatePacket from './PersonalUpdatePacket.js';
+import { Stats, StatsContainer } from '../shared/Stats.js'
+import { Equipment, EquipmentManager } from '../shared/Equipment.js'
 
 import Formulas from '../shared/Formulas'
 import GameObject from './GameObject'

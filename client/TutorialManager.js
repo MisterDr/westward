@@ -6,8 +6,8 @@ import Engine from './Engine'
 import InfoPanel from './InfoPanel'
 import UI from './UI'
 
-import buildingsData from '../assets/data/buildings.json'
-import itemsData from '../assets/data/items.json'
+import buildingsData from '../assets/data/buildings.json' assert { type: 'json' }
+import itemsData from '../assets/data/items.json' assert { type: 'json' }
 
 var TutorialManager = {};
 

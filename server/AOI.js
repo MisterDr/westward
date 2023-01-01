@@ -2,9 +2,11 @@
  * Created by Jerome on 24-02-17.
  */
 
-var UpdatePacket = require('./UpdatePacket.js').UpdatePacket;
+// var UpdatePacket = require('./UpdatePacket.js').UpdatePacket;
 // var Utils = require('../shared/Utils.js').Utils;
-var GameServer = require('./GameServer.js').GameServer;
+// var GameServer = require('./GameServer.js').GameServer;
+import { UpdatePacket } from './UpdatePacket.js'
+// import Gameserver from './GameServer.js'
 
 import Utils from '../shared/Utils'
 

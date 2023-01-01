@@ -1,10 +1,24 @@
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+
 console.log(require('dotenv').config());
-var express = require('express');
+// var express = require('express');
+import express from 'express';
 var app = express();
-var server = require('http').Server(app);
-var bodyParser = require("body-parser");
-var io = require('socket.io').listen(server);
-var path = require('path');
+
+import cors from 'cors';
+import { createServer } from 'http';
+import { Server } from 'socket.io';
+
+const server = createServer(app);
+// var server = require('http').Server(app);
+// var bodyParser = require("body-parser");
+import bodyParser from "body-parser";
+// var io = require('socket.io');
+
+const io = new Server(server, { cors: { origin: '*' } });
+// var path = require('path');
+import path from 'path';
 
 
 var quickselect = require('quickselect'); // Used to compute the median for latency
@@ -183,7 +197,7 @@ server.listen(process.env.PORT || myArgs.port || 8081,function(){
 server.resetStamp = 1519130567967; // ignore returning players with stamps older than this and treat them as new
 
 process.on('uncaughtException', function(err) {
-    GameServer.sendSlackNotification(err.toString(),'warning');
+    // GameServer.sendSlackNotification(err.toString(),'warning');
     console.error('Caught exception: ' + err);
     console.trace(err);
 });
@@ -321,4 +335,3 @@ server.sendID = function(socket,playerID){
 server.sendError = function(socket){
     socket.emit('serv-error'); // "error" only is a reserved socket.io event name
 };
-

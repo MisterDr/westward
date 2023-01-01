@@ -1,7 +1,8 @@
 /**
  * Created by Jerome Renaux (jerome.renaux@gmail.com) on 09-02-19.
  */
-let mongoose = require('mongoose');
+// let mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 let Schemas = {
     buildingSchema : mongoose.Schema({

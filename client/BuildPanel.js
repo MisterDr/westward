@@ -7,8 +7,8 @@ import Panel from './Panel'
 import UI from './UI'
 import Utils from '../shared/Utils'
 
-import buildingsData from '../assets/data/buildings.json'
-import itemsData from '../assets/data/items.json'
+import buildingsData from '../assets/data/buildings.json' assert { type: 'json' }
+import itemsData from '../assets/data/items.json' assert { type: 'json' }
 
 var NB_PER_PAGE = 4;
 

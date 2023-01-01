@@ -9,9 +9,9 @@ import {FoWPipeline} from "./shaders";
 import UI from './UI'
 import Utils from '../shared/Utils'
 
-import itemsData from '../assets/data/items.json'
-import buildingsData from '../assets/data/buildings.json'
-import regionsData from '../assets/data/regions.json'
+import itemsData from '../assets/data/items.json' assert { type: 'json' }
+import buildingsData from '../assets/data/buildings.json' assert { type: 'json' }
+import regionsData from '../assets/data/regions.json' assert { type: 'json' }
 
 var fowID = 0;
 

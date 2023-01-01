@@ -75,4 +75,5 @@ PersonalUpdatePacket.prototype.addNotif = function(msg){
     this.notifs.push(msg);
 };
 
-module.exports.PersonalUpdatePacket = PersonalUpdatePacket;
+// module.exports.PersonalUpdatePacket = PersonalUpdatePacket;
+export default PersonalUpdatePacket;

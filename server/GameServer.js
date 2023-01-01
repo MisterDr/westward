@@ -2,13 +2,21 @@
  * Created by Jerome on 20-09-17.
  */
 import Inventory from "../shared/Inventory";
+import cfg from '../config/deployment.json' assert { type: 'json' };
 
-var fs = require('fs');
-var pathmodule = require('path');
-var clone = require('clone'); // used to clone objects, essentially used for clonicg update packets
-var ObjectId = require('mongodb').ObjectID;
-var mongoose = require('mongoose');
-var Voronoi = require('voronoi');
+
+// var fs = require('fs');
+// var pathmodule = require('path');
+// var clone = require('clone'); // used to clone objects, essentially used for clonicg update packets
+// var ObjectId = require('mongodb').ObjectID;
+// var mongoose = require('mongoose');
+// var Voronoi = require('voronoi');
+import Voronoi from 'voronoi';
+import fs from 'fs';
+import pathmodule from 'path';
+import clone from 'clone';
+import { ObjectId } from 'mongodb';
+import mongoose from 'mongoose';
 
 var GameServer = {
     lastPlayerID: 0,
@@ -55,11 +63,11 @@ import SpawnZone from './SpawnZone'
 import Utils from '../shared/Utils'
 import World from '../shared/World'
 
-import animalsClusters from '../maps/animals.json'
-import collisions from '../maps/collisions.json'
-import itemsOnMap from '../maps/items.json'
-import resourceMarkers from '../maps/resourceMarkers.json'
-import masterData from '../maps/master.json'
+import animalsClusters from '../maps/animals.json' assert { type: 'json' }
+import collisions from '../maps/collisions.json' assert { type: 'json' }
+import itemsOnMap from '../maps/items.json' assert { type: 'json' }
+import resourceMarkers from '../maps/resourceMarkers.json' assert { type: 'json' }
+import masterData from '../maps/master.json' assert { type: 'json' }
 
 /**
  * Progresses through the initialization sequence of the server, in a serial way (even for async steps).
@@ -105,7 +113,7 @@ GameServer.createModels = function(){
 GameServer.readMap = function(mapsPath,test,cb){
     var hrstart = process.hrtime();
 
-    GameServer.config = require('config');
+    GameServer.config = cfg // require('config');
     console.log('Using config environment: '+process.env.NODE_CONFIG_ENV);
 
     if(test){
@@ -157,21 +165,21 @@ GameServer.readMap = function(mapsPath,test,cb){
     GameServer.tutorialData = JSON.parse(fs.readFileSync(pathmodule.join(dataAssets,'tutorials.json')).toString()); // './assets/data/texts.json'
     GameServer.instances = {};
 
-    GameServer.enableAnimalWander = GameServer.config.get('wildlife.wander');
-    GameServer.enableCivWander = GameServer.config.get('civs.wander');
-    GameServer.enableAnimalAggro = GameServer.config.get('wildlife.aggro');
-    GameServer.enableCivAggro = GameServer.config.get('civs.aggro');
-    GameServer.enableBattles = GameServer.config.get('battle.enabled');
-    GameServer.classes = GameServer.config.get('classes');
-    GameServer.battleParameters = GameServer.config.get('battle');
-    GameServer.buildingParameters = GameServer.config.get('buildings');
-    GameServer.characterParameters = GameServer.config.get('character');
-    GameServer.miscParameters = GameServer.config.get('misc');
-    GameServer.PFParameters = GameServer.config.get('pathfinding');
-    GameServer.wildlifeParameters = GameServer.config.get('wildlife');
-    GameServer.civsParameters = GameServer.config.get('civs');
+    GameServer.enableAnimalWander = GameServer.config.wildlife.wander;
+    GameServer.enableCivWander = GameServer.config.civs.wander;
+    GameServer.enableAnimalAggro = GameServer.config.wildlife.aggro;
+    GameServer.enableCivAggro = GameServer.config.civs.aggro;
+    GameServer.enableBattles = GameServer.config.battle.enabled;
+    GameServer.classes = GameServer.config.classes;
+    GameServer.battleParameters = GameServer.config.battle;
+    GameServer.buildingParameters = GameServer.config.buildings;
+    GameServer.characterParameters = GameServer.config.character;
+    GameServer.miscParameters = GameServer.config.misc;
+    GameServer.PFParameters = GameServer.config.pathfinding;
+    GameServer.wildlifeParameters = GameServer.config.wildlife;
+    GameServer.civsParameters = GameServer.config.civs;
 
-    GameServer.clientParameters = GameServer.config.get('client');
+    GameServer.clientParameters = GameServer.config.client;
 
     GameServer.collisions = new SpaceMap();
     // GameServer.collisions.fromList(JSON.parse(fs.readFileSync(pathmodule.join(mapsPath,'collisions.json')).toString()),true); // true = compact
@@ -404,7 +412,7 @@ GameServer.addBuilding = function(data){
  */
 GameServer.loadBuildings = function(){
     var hrstart = process.hrtime();
-    if(GameServer.config.get('buildings.nobuildings')){
+    if(GameServer.config.buildings.nobuildings){
         GameServer.updateStatus();
         return;
     }
@@ -538,7 +546,7 @@ GameServer.loadMarkers = function(){
  */
 GameServer.setUpSpawnZones = function(){
     var hrstart = process.hrtime();
-    if(GameServer.config.get('wildlife.nolife')) return;
+    if(GameServer.config.wildlife.nolife) return;
 
     GameServer.spawnZones = [];
     animalsClusters.forEach(function(animal){
@@ -568,7 +576,7 @@ GameServer.finalStep = function(){
     console.log('finalSetp execution time: %ds %dms', hrend[0], hrend[1] / 1000000);
     console.log(process.memoryUsage().heapUsed/1024/1024,'Mb memory used');
     GameServer.updateStatus();
-    GameServer.sendSlackNotification('Game server started');
+    // GameServer.sendSlackNotification('Game server started');
 };
 
 /**
@@ -676,7 +684,7 @@ GameServer.addItem = function(x,y,type,instance){
  * Perform tasks once the initialization sequence is over. Mostly used for testing.
  */
 GameServer.onInitialized = function(){
-    if(!GameServer.config.get('misc.performInit')) return;
+    if(!GameServer.config.misc.performInit) return;
     GameServer.addAnimal(691,586,1);
 };
 
@@ -687,7 +695,7 @@ GameServer.onNewPlayer = function(player){
     // Following line is used to prevent this function from
     // running in production (this function should only be used
     // for testing)
-    if(!GameServer.config.get('misc.performInit')) return;
+    if(!GameServer.config.misc.performInit) return;
     // give me all the health and vigor
 
     // player.setStat('vigor', 10);
@@ -712,7 +720,7 @@ GameServer.onNewPlayer = function(player){
 GameServer.setUpdateLoops = function(){
     console.log('Setting up loops...');
 
-    GameServer.NPCupdateRate = GameServer.config.get('updateRates.wander');
+    GameServer.NPCupdateRate = GameServer.config.updateRates.wander;
 
     var loops = {
         'client': GameServer.updateClients, // send update to clients
@@ -723,7 +731,7 @@ GameServer.setUpdateLoops = function(){
 
     for(var loop in loops){
         if(!(typeof loops[loop] === 'function')) console.warn('No valid function for',loop);
-        setInterval(loops[loop],GameServer.config.get('updateRates.'+loop));
+        setInterval(loops[loop],GameServer.config['updateRates.'+loop]);
     }
     console.log('Loops set');
 };
@@ -733,7 +741,7 @@ GameServer.setUpdateLoops = function(){
  * Called one the initialization sequence is over.
  */
 GameServer.startEconomy = function(){
-    GameServer.economyTurns = GameServer.config.get('economyCycles.turns');
+    GameServer.economyTurns = GameServer.config.economyCycles.turns;
     GameServer.elapsedTurns = -1; // start at -1 since  `GameServer.economyTurn()` is called straight away and increments counter
     var maxDuration = 0;
     for(var event in GameServer.economyTurns){
@@ -743,7 +751,7 @@ GameServer.startEconomy = function(){
     GameServer.maxTurns = Math.max(maxDuration,300);
 
     GameServer.economyTurn();
-    GameServer.turnDuration = GameServer.config.get('economyCycles.turnDuration');
+    GameServer.turnDuration = GameServer.config.economyCycles.turnDuration;
     setInterval(GameServer.economyTurn,GameServer.turnDuration*1000);
 };
 
@@ -838,7 +846,7 @@ GameServer.addNewPlayer = function(socket,data){
     // Send extra stuff following player initialization, unique to new players
     player.setStartingInventory();
     Prism.logEvent(player,'connect',{stl:player.origin,re:false});
-    GameServer.sendSlackNotification('New player '+player.name+' has arrived in '+GameServer.regionsData[player.origin].name);
+    // GameServer.sendSlackNotification('New player '+player.name+' has arrived in '+GameServer.regionsData[player.origin].name);
     return player; // return value for the tests
 };
 
@@ -891,7 +899,7 @@ GameServer.loadPlayer = function(socket,data){
 
             GameServer.postProcessPlayer(socket,player);
             Prism.logEvent(player,'connect',{stl:player.region,re:true});
-            GameServer.sendSlackNotification('Player '+player.name+' has come back in '+GameServer.regionsData[player.region].name);
+            // GameServer.sendSlackNotification('Player '+player.name+' has come back in '+GameServer.regionsData[player.region].name);
         }
     );
 };
@@ -1210,7 +1218,6 @@ GameServer.addRemains = function(x,y,type){
  * of materials.
  * */
 GameServer.respawnItems = function(){
-    console.log('Respawning items ...');
     var i = GameServer.itemsToRespawn.length;
     while(i--){
         var data = GameServer.itemsToRespawn[i];

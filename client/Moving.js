@@ -9,7 +9,7 @@ import Engine from './Engine'
 import PFUtils from '../shared/PFUtils'
 import TutorialManager from './TutorialManager'
 
-import itemsData from '../assets/data/items.json'
+import itemsData from '../assets/data/items.json' assert { type: 'json' }
 
 var Moving = new Phaser.Class({
 

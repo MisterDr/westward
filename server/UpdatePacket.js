@@ -115,4 +115,5 @@ UpdatePacket.prototype.clean = function(){
     return this;
 };
 
-module.exports.UpdatePacket = UpdatePacket;
+// module.exports.UpdatePacket = UpdatePacket;
+export { UpdatePacket }

@@ -7,7 +7,7 @@ import {BigProgressBar} from './ProgressBar'
 import Panel from './Panel'
 import Utils from '../shared/Utils'
 
-import itemsData from '../assets/data/items.json'
+import itemsData from '../assets/data/items.json' assert { type: 'json' }
 
 function RepairPanel(x,y,width,height,title){
     Panel.call(this,x,y,width,height,title);

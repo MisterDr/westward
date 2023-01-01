@@ -2,7 +2,9 @@
  * Created by Jerome Renaux (jerome.renaux@gmail.com) on 18-06-18.
  */
 
-var EquipmentManager = require('../shared/Equipment.js').EquipmentManager;
+// var EquipmentManager = require('../shared/Equipment.js').EquipmentManager;
+import { EquipmentManager } from '../shared/Equipment.js'
+
 
 import GameObject from './GameObject'
 import GameServer from './GameServer'

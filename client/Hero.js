@@ -14,8 +14,8 @@ import UI from './UI'
 import Utils from '../shared/Utils'
 import World from '../shared/World'
 
-import itemsData from '../assets/data/items.json'
-import regionsData from '../assets/data/regions.json'
+import itemsData from '../assets/data/items.json' assert { type: 'json' }
+import regionsData from '../assets/data/regions.json' assert { type: 'json' }
 
 let Hero = new Phaser.Class({
     Extends: Player,

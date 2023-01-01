@@ -11,7 +11,7 @@ import Utils from '../shared/Utils'
 
 
 import abilitiesData from '../assets/data/abilities'
-import itemsData from '../assets/data/items.json'
+import itemsData from '../assets/data/items.json' assert { type: 'json' }
 
 
 function CraftingPanel(x,y,width,height,title){

@@ -3,7 +3,7 @@
  */
 var expect = require('chai').expect;
 var request = require('request');
-var io = require('socket.io-client');
+var io = require('socket.io');
 var path = require('path');
 var sinon = require('sinon');
 var mongoose = require('mongoose');

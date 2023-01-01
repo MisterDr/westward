@@ -1,4 +1,5 @@
-var clone = require('clone');
+// var clone = require('clone');
+import clone from 'clone'
 
 import GameServer from "./GameServer";
 import Inventory from "../shared/Inventory";

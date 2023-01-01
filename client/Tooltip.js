@@ -6,10 +6,10 @@ import {Equipment} from "../shared/Equipment";
 import {Stats} from "../shared/Stats";
 import UI from './UI';
 
-import abilitiesData from '../assets/data/abilities.json'
-import buildingsData from '../assets/data/buildings.json'
-import classData from '../assets/data/classes.json'
-import itemsData from '../assets/data/items.json'
+import abilitiesData from '../assets/data/abilities.json' assert { type: 'json' }
+import buildingsData from '../assets/data/buildings.json' assert { type: 'json' }
+import classData from '../assets/data/classes.json' assert { type: 'json' }
+import itemsData from '../assets/data/items.json' assert { type: 'json' }
 
 var Tooltip = new Phaser.Class({
 

@@ -1,4 +1,4 @@
-FROM node:boron
+FROM node:gallium
 
 # Create app directory
 RUN mkdir -p /usr/src/app
@@ -12,5 +12,5 @@ RUN npm install --production
 # Bundle app source
 COPY . /usr/src/app
 
-EXPOSE 80
+EXPOSE 8123
 CMD [ "npm", "start" ]

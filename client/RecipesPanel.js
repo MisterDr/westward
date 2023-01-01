@@ -11,7 +11,7 @@ import Utils from '../shared/Utils'
 import TutorialManager from './TutorialManager'
 
 
-import itemsData from '../assets/data/items.json'
+import itemsData from '../assets/data/items.json' assert { type: 'json' }
 
 function RecipesPanel(x,y,width,height,title,invisible){
     ShopInventoryPanel.call(this,x,y,width,height,title,invisible);

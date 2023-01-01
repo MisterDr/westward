@@ -8,7 +8,7 @@ import {MiniProgressBar} from "./ProgressBar"
 import Panel from './Panel'
 import UI from './UI'
 
-import itemsData from '../assets/data/items.json'
+import itemsData from '../assets/data/items.json' assert { type: 'json' }
 
 function BattleEquipmentPanel() {
     Panel.call(this, 0, 0, 0, 0, '', true); // true = invisible

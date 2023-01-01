@@ -2,7 +2,7 @@
  * Created by Jerome on 12-12-17.
  */
 
-import itemsData from '../assets/data/items.json'
+import itemsData from '../assets/data/items.json' assert { type: 'json' }
 
 // TODO: move to a conf file
 var Equipment = {

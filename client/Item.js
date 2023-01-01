@@ -10,7 +10,7 @@ import UI from './UI'
 import Utils from '../shared/Utils'
 import World from '../shared/World'
 
-import itemsData from '../assets/data/items.json'
+import itemsData from '../assets/data/items.json' assert { type: 'json' }
 
 var Item = new Phaser.Class({
 

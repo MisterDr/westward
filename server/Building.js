@@ -1,9 +1,12 @@
 /**
  * Created by Jerome on 05-10-17.
  */
-var Formulas = require('../shared/Formulas.js').Formulas;
-var StatsContainer = require('../shared/Stats.js').StatsContainer;
-var Models = require('../shared/models.js');
+// var Formulas = require('../shared/Formulas.js').Formulas;
+// var StatsContainer = require('../shared/Stats.js').StatsContainer;
+// var Models = require('../shared/models.js');
+import Formulas from '../shared/Formulas.js'
+import { Models } from '../shared/models.js'
+import { StatsContainer } from '../shared/Stats.js'
 
 import FightingEntity from './FightingEntity'
 import GameObject from './GameObject'
